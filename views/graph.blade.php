@@ -18,6 +18,7 @@
             <li><a href="#" class="block hover:text-gray-200">Settings</a></li>
             <li><a href="{{ url('/graph') }}" class="block hover:text-gray-200">Graphics</a></li>
             <li><a href="#" class="block hover:text-gray-200">Users</a></li>
+            <li><a href="#" class="block hover:text-gray-200">About Us</a></li>
         </ul>
     </aside>
 
