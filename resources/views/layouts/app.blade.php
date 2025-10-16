@@ -12,51 +12,84 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="font-sans antialiased bg-gray-100 dark:bg-gray-900">
-    <div class="min-h-screen flex">
 
+    <style>
+        /* === Full background seluruh layar kanan === */
+        .main-bg {
+            background-image: url('{{ asset("assets/images/Background.png") }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+        }
+
+        /* Sidebar transparan biar nyatu */
+        aside {
+            background-color: rgba(31, 41, 55, 0.95);
+            backdrop-filter: blur(6px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Kontainer isi (biar konten tetap kebaca) */
+        .content-card {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Bagian bawah sidebar (user info) */
+        .user-section {
+            background-color: #2563eb; /* biru */
+            text-align: center;
+            padding: 1rem;
+            font-weight: 500;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <div class="min-h-screen flex">
         <!-- Sidebar -->
-        <aside class="w-64 bg-gray-800 text-gray-200">
-            <div class="p-6 text-2xl font-bold border-b border-gray-700">
-                AQUA
+        <aside class="w-64 text-gray-200">
+            <div>
+                <div class="p-6 text-2xl font-bold border-b border-gray-700">
+                    AQUA
+                </div>
+                <nav class="mt-4">
+                    <a href="{{ route('dashboard') }}"
+                       class="block px-6 py-3 hover:bg-gray-700/60 {{ request()->routeIs('dashboard') ? 'bg-gray-700/80' : '' }}">
+                       Dashboard
+                    </a>
+                    <a href="#"
+                       class="block px-6 py-3 hover:bg-gray-700/60">
+                       Sensor Data
+                    </a>
+                    <a href="#"
+                       class="block px-6 py-3 hover:bg-gray-700/60">
+                       Device Control
+                    </a>
+                    <a href="#"
+                       class="block px-6 py-3 hover:bg-gray-700/60">
+                       Settings
+                    </a>
+                </nav>
             </div>
-            <nav class="mt-4">
-                <a href="{{ route('dashboard') }}"
-                   class="block px-6 py-3 hover:bg-gray-700 {{ request()->routeIs('dashboard') ? 'bg-gray-700' : '' }}">
-                   Dashboard
-                </a>
-                <a href="#"
-                   class="block px-6 py-3 hover:bg-gray-700">
-                   Sensor Data
-                </a>
-                <a href="#"
-                   class="block px-6 py-3 hover:bg-gray-700">
-                   Device Control
-                </a>
-                <a href="#"
-                   class="block px-6 py-3 hover:bg-gray-700">
-                   Settings
-                </a>
-            </nav>
+
+            <!-- Bagian bawah: nama user -->
+            <div class="user-section">
+                👤 {{ Auth::user()->name }}
+            </div>
         </aside>
 
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col">
-            @include('layouts.navigation')
-
-            <!-- Page Header -->
-            @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
-            <!-- Page Content -->
+        <!-- Main content -->
+        <div class="flex-1 flex flex-col main-bg">
             <main class="flex-1 p-6">
-                {{ $slot }}
+                <div class="content-card">
+                    {{ $slot }}
+                </div>
             </main>
         </div>
     </div>
