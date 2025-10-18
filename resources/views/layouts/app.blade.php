@@ -72,9 +72,9 @@
                        class="block px-6 py-3 hover:bg-gray-700/60">
                        Device Control
                     </a>
-                    <a href="#"
-                       class="block px-6 py-3 hover:bg-gray-700/60">
-                       Settings
+                    <a href="{{ route('settings') }}"
+                        class="block px-6 py-3 hover:bg-gray-700/60 {{ request()->routeIs('settings') ? 'bg-gray-700/80' : '' }}">
+                        Settings
                     </a>
                 </nav>
             </div>
