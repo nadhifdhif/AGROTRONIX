@@ -78,10 +78,18 @@
                 </nav>
             </div>
 
-            <!-- Bagian bawah: nama user -->
-            <div class="user-section">
-                👤 {{ Auth::user()->name }}
-            </div>
+                <!-- Bagian bawah: nama user + tombol logout -->
+                    <div class="user-section flex flex-col items-center space-y-2">
+                        <div>👤 {{ Auth::user()->name }}</div>
+
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit"
+                                class="text-sm bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded transition duration-200">
+                                Logout
+                            </button>
+                        </form>
+                    </div>
         </aside>
 
         <!-- Main content -->
