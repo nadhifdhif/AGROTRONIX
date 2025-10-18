@@ -32,13 +32,14 @@
             justify-content: space-between;
         }
 
-        /* Kontainer isi (biar konten tetap kebaca) */
+        /* Kontainer isi (biar konten tetap kebaca) 
         .content-card {
             background-color: rgba(255, 255, 255, 0.85);
             border-radius: 1rem;
             padding: 2rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
+        */
 
         /* Bagian bawah sidebar (user info) */
         .user-section {
@@ -92,14 +93,12 @@
                     </div>
         </aside>
 
-        <!-- Main content -->
-        <div class="flex-1 flex flex-col main-bg">
-            <main class="flex-1 p-6">
-                <div class="content-card">
-                    {{ $slot }}
-                </div>
-            </main>
-        </div>
+                    <!-- Main content -->
+            <div class="flex-1 flex flex-col main-bg">
+                <main class="flex-1 p-6">
+                    @yield('content')
+                </main>
+            </div>
     </div>
 </body>
 </html>
