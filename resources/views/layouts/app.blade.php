@@ -14,7 +14,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
-        /* === Full background seluruh layar kanan === */
+        /* Background */
         .main-bg {
             background-image: url('{{ asset("assets/images/Background.png") }}');
             background-size: cover;
@@ -23,7 +23,7 @@
             min-height: 100vh;
         }
 
-        /* Sidebar transparan biar nyatu */
+        /* Sidebar */
         aside {
             background-color: rgba(31, 41, 55, 0.95);
             backdrop-filter: blur(6px);
