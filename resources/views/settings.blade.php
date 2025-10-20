@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div x-data="{ open: false }" class="text-center relative overflow-hidden">
+<div x-data="{ open: false }" class="text-center relative overflow-hidden transition-opacity duration-500 ease-in-out" x-cloak>
 
     <h1 class="text-3xl font-bold text-blue-700 mb-10 flex justify-center items-center gap-2">
         Settings 🌐
     </h1>
 
     <!-- Layer blur -->
-    <div x-show="open"
-         x-transition:enter="transition-opacity duration-300"
+    <div x-cloak x-show="open"
+         x-transition:enter="transition-opacity duration-300 ease-out"
          x-transition:enter-start="opacity-0"
          x-transition:enter-end="opacity-100"
-         x-transition:leave="transition-opacity duration-300"
+         x-transition:leave="transition-opacity duration-300 ease-in"
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
          class="absolute inset-0 bg-white/30 backdrop-blur-sm z-0 rounded-2xl">
@@ -78,7 +78,7 @@
     </div>
 
     <!-- Card Bahasa -->
-    <div x-show="open"
+    <div x-cloak x-show="open"
          x-transition:enter="transition transform duration-500 ease-out"
          x-transition:enter-start="translate-y-10 scale-90 opacity-0"
          x-transition:enter-end="translate-y-0 scale-105 opacity-100"
@@ -87,7 +87,7 @@
          x-transition:leave-end="translate-y-10 scale-90 opacity-0"
          class="absolute inset-0 flex items-center justify-center z-50">
 
-        <div class="bg-white/95 rounded-3xl p-8 shadow-2xl w-full max-w-md transform transition-all animate-[float_3s_ease-in-out_infinite]">
+        <div class="bg-white/95 rounded-3xl p-8 shadow-2xl w-full max-w-md transform transition-all animate-[float_3s_ease-in-out_infinite] fade-enter-active">
             <h3 class="text-2xl font-semibold mb-6 text-gray-800">Pilih Bahasa</h3>
 
             <div class="grid grid-cols-3 gap-4 mb-8">
@@ -107,7 +107,7 @@
                     <span class="fi fi-fr"></span> Français
                 </button>
 
-                <button class="bg-red-500 hover:bg-yellow-600 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
+                <button class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
                     <span class="fi fi-es"></span> Español
                 </button>
 
@@ -115,12 +115,16 @@
                     <span class="fi fi-pt"></span> Português
                 </button>
 
-                <button class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
+                <button class="bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
                     <span class="fi fi-cn"></span> 中文
                 </button>
-
+                
                 <button class="bg-pink-500 hover:bg-pink-600 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
                     <span class="fi fi-jp"></span> 日本語
+                </button>
+
+                <button class="bg-sky-500 hover:bg-sky-600 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
+                    <span class="fi fi-kr"></span> 한국어
                 </button>
             </div>
 
@@ -135,12 +139,15 @@
 <!-- Alpine.js -->
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
-<!-- Efek mengambang -->
+<!-- Efek mengambang + smooth -->
 <style>
+[x-cloak] { display: none !important; }
+
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
+
 .fi {
   width: 20px;
   height: 15px;
