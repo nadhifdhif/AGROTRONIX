@@ -4,7 +4,7 @@
 <div class="p-8 text-gray-800 text-center">
     <!-- Header -->
     <h1 class="text-3xl font-bold text-blue-800 mb-10">
-        Welcome, {{ Auth::user()->name }} 🌊
+        Welcome, {{ Auth::user()->name }}.
     </h1>
 
     <!-- Grid Dashboard -->

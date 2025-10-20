@@ -4,7 +4,7 @@
 <div x-data="{ open: false }" class="text-center relative overflow-hidden transition-opacity duration-500 ease-in-out" x-cloak>
 
     <h1 class="text-3xl font-bold text-blue-700 mb-10 flex justify-center items-center gap-2">
-        Settings 🌐
+        Settings
     </h1>
 
     <!-- Layer blur -->
@@ -33,14 +33,17 @@
         <div class="bg-white/80 rounded-2xl shadow-lg p-6">
             <h3 class="text-lg font-semibold">Keamanan</h3>
             <p class="text-gray-600 text-sm mb-4">Ubah kata sandi akun Anda</p>
-            <button class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg transition">Update</button>
+                <a href="{{ route('profile.edit') }}"
+                 class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg transition">
+                 Update
+                </a>
         </div>
 
         <!-- Tema Tampilan -->
         <div class="bg-white/80 rounded-2xl shadow-lg p-6">
             <h3 class="text-lg font-semibold">Tema Tampilan</h3>
             <p class="text-gray-600 text-sm mb-4">Sesuaikan mode terang atau gelap</p>
-            <button class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition">Sesuaikan</button>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">Sesuaikan</button>
         </div>
 
         <!-- Bahasa -->
@@ -56,7 +59,7 @@
                 <h3 class="text-lg font-semibold">Bahasa</h3>
                 <p class="text-gray-600 text-sm mb-4">Atur bahasa antarmuka</p>
                 <button @click="open = true"
-                        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition">
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">
                     Pilih
                 </button>
             </div>
@@ -66,14 +69,14 @@
         <div class="bg-white/80 rounded-2xl shadow-lg p-6">
             <h3 class="text-lg font-semibold">Notifikasi</h3>
             <p class="text-gray-600 text-sm mb-4">Kelola pemberitahuan sistem</p>
-            <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg transition">Kelola</button>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">Kelola</button>
         </div>
 
         <!-- Tentang Sistem -->
         <div class="bg-white/80 rounded-2xl shadow-lg p-6">
             <h3 class="text-lg font-semibold">Tentang Sistem</h3>
             <p class="text-gray-600 text-sm mb-4">Lihat versi & pengembang</p>
-            <button class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition">Detail</button>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">Detail</button>
         </div>
     </div>
 
@@ -91,15 +94,15 @@
             <h3 class="text-2xl font-semibold mb-6 text-gray-800">Pilih Bahasa</h3>
 
             <div class="grid grid-cols-3 gap-4 mb-8">
-                <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
+                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
                     <span class="fi fi-id"></span> Indonesia
                 </button>
 
-                <button class="bg-gray-700 hover:bg-gray-800 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
+                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
                     <span class="fi fi-gb"></span> English
                 </button>
 
-                <button class="bg-emerald-700 hover:bg-emerald-800 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2 font-[Cairo]">
+                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2 font-[Cairo]">
                     <span class="fi fi-sa"></span> العربية
                 </button>
 
@@ -107,23 +110,23 @@
                     <span class="fi fi-fr"></span> Français
                 </button>
 
-                <button class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
+                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
                     <span class="fi fi-es"></span> Español
                 </button>
 
-                <button class="bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
+                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
                     <span class="fi fi-pt"></span> Português
                 </button>
 
-                <button class="bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
+                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
                     <span class="fi fi-cn"></span> 中文
                 </button>
                 
-                <button class="bg-pink-500 hover:bg-pink-600 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
+                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
                     <span class="fi fi-jp"></span> 日本語
                 </button>
 
-                <button class="bg-sky-500 hover:bg-sky-600 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
+                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
                     <span class="fi fi-kr"></span> 한국어
                 </button>
             </div>
