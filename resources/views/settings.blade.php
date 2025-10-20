@@ -78,7 +78,7 @@
         </div>
     </div>
 
-    <!-- Card Bahasa (hanya di area konten utama) -->
+    <!-- Card Bahasa -->
     <div x-show="open"
          x-transition:enter="transition transform duration-500 ease-out"
          x-transition:enter-start="translate-y-10 scale-90 opacity-0"
@@ -92,10 +92,21 @@
             <h3 class="text-2xl font-semibold mb-6 text-gray-800">Pilih Bahasa</h3>
 
             <div class="grid grid-cols-2 gap-4 mb-8">
-                <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105">🇮🇩 Indonesia</button>
-                <button class="bg-gray-700 hover:bg-gray-800 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105">🇬🇧 English</button>
-                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105">🇫🇷 Français</button>
-                <button class="bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105">🇨🇳 中文</button>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
+                    <span class="fi fi-id"></span> Indonesia
+                </button>
+
+                <button class="bg-gray-700 hover:bg-gray-800 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
+                    <span class="fi fi-gb"></span> English
+                </button>
+
+                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
+                    <span class="fi fi-fr"></span> Français
+                </button>
+
+                <button class="bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg transform hover:scale-105 flex justify-center items-center gap-2">
+                    <span class="fi fi-cn"></span> 中文
+                </button>
             </div>
 
             <button @click="open = false"
@@ -114,6 +125,12 @@
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
+}
+.fi {
+  width: 20px;
+  height: 15px;
+  border-radius: 2px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
 }
 </style>
 @endsection
