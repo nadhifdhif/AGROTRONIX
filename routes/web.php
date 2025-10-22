@@ -43,6 +43,22 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/sensor-data', [SensorDataController::class, 'index'])->name('sensor.data');
+/*
+|--------------------------------------------------------------------------
+| Sensor Data Route
+|--------------------------------------------------------------------------
+*/
+Route::get('/sensor-data', [SensorDataController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('sensor.data');
+
+/*
+|--------------------------------------------------------------------------
+| Tentang Sistem Route
+|--------------------------------------------------------------------------
+*/
+Route::get('/about-system', function () {
+    return view('about-system');
+})->middleware(['auth', 'verified'])->name('about.system');
 
 require __DIR__ . '/auth.php';
