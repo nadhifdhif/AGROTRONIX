@@ -1,7 +1,29 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SensorDataController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Config;
+
+/*
+|--------------------------------------------------------------------------
+| Fix domain & session buat LocalXpose
+|--------------------------------------------------------------------------
+| Baris ini memastikan session, cookie, dan CSRF tetap valid
+| meskipun domain tunnel berubah (contoh: xxxxx.loclx.io)
+*/
+if (app()->environment('local')) {
+    URL::forceScheme('http');
+    Config::set('session.domain', null);
+    Config::set('session.secure', false);
+}
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,4 +43,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::get('/sensor-data', [SensorDataController::class, 'index'])->name('sensor.data');
+
+require __DIR__ . '/auth.php';
