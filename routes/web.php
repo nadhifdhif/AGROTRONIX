@@ -43,6 +43,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/device-control', function () {
+    return view('device-control');
+})->name('device-control');
+
 /*
 |--------------------------------------------------------------------------
 | Sensor Data Route
