@@ -40,6 +40,22 @@
             font-weight: 500;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
+
+        /* ====== Animasi Fade-In Smooth ====== */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out both;
+        }
     </style>
 </head>
 <body class="font-sans antialiased">
