@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="p-6 text-center fade-in-up">
-    <h1 class="text-3xl font-bold text-blue-700 mb-6">📊 Sensor Data</h1>
+    <h1 class="text-3xl font-bold text-blue-700 mb-6">Sensor Data</h1>
 
     <div class="bg-white/60 backdrop-blur-lg rounded-2xl shadow-md p-6 fade-in-up" style="animation-delay: 0.1s;">
         <table class="w-full border-collapse rounded-xl overflow-hidden">
