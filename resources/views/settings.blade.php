@@ -154,32 +154,34 @@
         </div>
     </div>
 
-    <!-- Card Tentang Sistem -->
-    <div x-cloak 
-        x-show="systemOpen"
-        x-transition:enter="transition-all transform duration-500 ease-out delay-[20ms]"
-        x-transition:enter-start="opacity-0 scale-95 translate-y-5 blur-[2px]"
-        x-transition:enter-end="opacity-100 scale-100 translate-y-0 blur-0"
-        x-transition:leave="transition-all transform duration-400 ease-in"
-        x-transition:leave-start="opacity-100 scale-100 translate-y-0 blur-0"
-        x-transition:leave-end="opacity-0 scale-95 translate-y-5 blur-[2px]"
-        class="absolute inset-0 flex items-center justify-center z-50">
+        <!-- Card Tentang Sistem -->
+        <div x-cloak 
+            x-show="systemOpen"
+            x-transition:enter="transition-all transform duration-500 ease-out delay-[20ms]"
+            x-transition:enter-start="opacity-0 scale-95 translate-y-5 blur-[2px]"
+            x-transition:enter-end="opacity-100 scale-100 translate-y-0 blur-0"
+            x-transition:leave="transition-all transform duration-400 ease-in"
+            x-transition:leave-start="opacity-100 scale-100 translate-y-0 blur-0"
+            x-transition:leave-end="opacity-0 scale-95 translate-y-5 blur-[2px]"
+            class="absolute inset-0 flex items-center justify-center z-50">
 
-        <div class="bg-white/95 rounded-3xl p-10 shadow-2xl w-full max-w-xl transform transition-all animate-[float_3s_ease-in-out_infinite]">
-            <h3 class="text-2xl font-semibold mb-4 text-gray-800">Tentang Sistem</h3>
-            <p class="text-gray-600 mb-4">AQUA (Automatic Quality Utility for Agriculture)</p>
+            <!-- 🧩 Lebih lebar dan proporsional -->
+            <div class="bg-white/95 rounded-3xl p-10 px-12 shadow-2xl w-full max-w-2xl transform transition-all animate-[float_3s_ease-in-out_infinite]">
+                <h3 class="text-2xl font-semibold mb-4 text-gray-800">Tentang Sistem</h3>
+                <p class="text-gray-600 mb-4">AQUA (Automatic Quality Utility for Agriculture)</p>
 
-            <ul class="text-left text-gray-700 list-disc list-inside mb-6 leading-relaxed">
-                <li><span class="font-semibold">Versi Sistem:</span> 1.0</li>
-                <li><span class="font-semibold">Pengembang:</span> Universitas Pendidikan Indonesia dan SMKN 6 Bandung</li>
-            </ul>
+                <ul class="text-left text-gray-700 list-disc list-inside mb-6 leading-relaxed">
+                    <li><span class="font-semibold">Versi Sistem:</span> 1.0</li>
+                    <li><span class="font-semibold">Pengembang:</span> Universitas Pendidikan Indonesia dan SMKN 6 Bandung</li>
+                </ul>
 
-            <button @click="systemOpen = false"
-                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition shadow-md hover:shadow-lg">
-                Tutup
-            </button>
+                <button @click="systemOpen = false"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition shadow-md hover:shadow-lg">
+                    Tutup
+                </button>
+            </div>
         </div>
-    </div>
+
 </div>
 
 <!-- Alpine.js -->
