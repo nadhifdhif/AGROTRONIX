@@ -2,7 +2,7 @@
 
 @section('content')
 <div 
-    x-data="{ open: false, systemOpen: false }" 
+    x-data="{ open: false, systemOpen: false, themeOpen: false }" 
     x-init="setTimeout(() => document.body.classList.add('page-enter-active'), 50)"
     class="text-center relative overflow-hidden transition-opacity duration-500 ease-in-out page-enter" 
     x-cloak
@@ -12,8 +12,8 @@
         Settings
     </h1>
 
-    <!-- Layer blur cuma aktif saat modal -->
-    <div x-cloak x-show="open || systemOpen"
+    <!-- Layer blur aktif saat modal terbuka -->
+    <div x-cloak x-show="open || systemOpen || themeOpen"
          x-transition:enter="transition-opacity duration-300 ease-out"
          x-transition:enter-start="opacity-0"
          x-transition:enter-end="opacity-100"
@@ -25,7 +25,7 @@
 
     <!-- Grid utama -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center transition-all duration-500 relative z-20"
-         :class="(open || systemOpen) ? 'scale-90 blur-sm opacity-40 pointer-events-none' : 'scale-100 blur-0 opacity-100'">
+         :class="(open || systemOpen || themeOpen) ? 'scale-90 blur-sm opacity-40 pointer-events-none' : 'scale-100 blur-0 opacity-100'">
 
         <!-- Profil Pengguna -->
         <div class="bg-white/80 rounded-2xl shadow-lg p-6">
@@ -51,10 +51,22 @@
         </div>
 
         <!-- Tema Tampilan -->
-        <div class="bg-white/80 rounded-2xl shadow-lg p-6">
-            <h3 class="text-lg font-semibold">Tema Tampilan</h3>
-            <p class="text-gray-600 text-sm mb-4">Sesuaikan mode terang atau gelap</p>
-            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">Sesuaikan</button>
+        <div class="relative">
+            <div x-show="!themeOpen"
+                 x-transition:enter="transition transform duration-400 ease-out"
+                 x-transition:enter-start="scale-90 opacity-0"
+                 x-transition:enter-end="scale-100 opacity-100"
+                 x-transition:leave="transition transform duration-400 ease-in"
+                 x-transition:leave-start="scale-100 opacity-100"
+                 x-transition:leave-end="scale-90 opacity-0"
+                 class="bg-white/80 rounded-2xl shadow-lg p-6 relative z-10">
+                <h3 class="text-lg font-semibold">Tema Tampilan</h3>
+                <p class="text-gray-600 text-sm mb-4">Sesuaikan mode terang atau gelap</p>
+                <button @click="themeOpen = true"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">
+                    Sesuaikan
+                </button>
+            </div>
         </div>
 
         <!-- Bahasa -->
@@ -118,33 +130,15 @@
             <h3 class="text-2xl font-semibold mb-6 text-gray-800">Pilih Bahasa</h3>
 
             <div class="grid grid-cols-3 gap-4 mb-8">
-                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg flex justify-center items-center gap-2">
-                    <span class="fi fi-id"></span> Indonesia
-                </button>
-                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg flex justify-center items-center gap-2">
-                    <span class="fi fi-gb"></span> English
-                </button>
-                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg flex justify-center items-center gap-2 font-[Cairo]">
-                    <span class="fi fi-sa"></span> العربية
-                </button>
-                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg flex justify-center items-center gap-2">
-                    <span class="fi fi-fr"></span> Français
-                </button>
-                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg flex justify-center items-center gap-2">
-                    <span class="fi fi-es"></span> Español
-                </button>
-                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg flex justify-center items-center gap-2">
-                    <span class="fi fi-pt"></span> Português
-                </button>
-                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg flex justify-center items-center gap-2">
-                    <span class="fi fi-cn"></span> 中文
-                </button>
-                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg flex justify-center items-center gap-2">
-                    <span class="fi fi-jp"></span> 日本語
-                </button>
-                <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg flex justify-center items-center gap-2">
-                    <span class="fi fi-kr"></span> 한국어
-                </button>
+                <template x-for="lang in ['id','gb','sa','fr','es','pt','cn','jp','kr']">
+                    <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-lg transition shadow-md hover:shadow-lg flex justify-center items-center gap-2">
+                        <span :class="'fi fi-' + lang"></span>
+                        <span x-text="{
+                            id: 'Indonesia', gb: 'English', sa: 'العربية', fr: 'Français',
+                            es: 'Español', pt: 'Português', cn: '中文', jp: '日本語', kr: '한국어'
+                        }[lang]"></span>
+                    </button>
+                </template>
             </div>
 
             <button @click="open = false"
@@ -154,34 +148,66 @@
         </div>
     </div>
 
-        <!-- Card Tentang Sistem -->
-        <div x-cloak 
-            x-show="systemOpen"
-            x-transition:enter="transition-all transform duration-500 ease-out delay-[20ms]"
-            x-transition:enter-start="opacity-0 scale-95 translate-y-5 blur-[2px]"
-            x-transition:enter-end="opacity-100 scale-100 translate-y-0 blur-0"
-            x-transition:leave="transition-all transform duration-400 ease-in"
-            x-transition:leave-start="opacity-100 scale-100 translate-y-0 blur-0"
-            x-transition:leave-end="opacity-0 scale-95 translate-y-5 blur-[2px]"
-            class="absolute inset-0 flex items-center justify-center z-50">
+    <!-- Card Tema Tampilan -->
+    <div x-cloak 
+         x-show="themeOpen"
+         x-transition:enter="transition-all transform duration-500 ease-out delay-[20ms]"
+         x-transition:enter-start="opacity-0 scale-95 translate-y-5 blur-[2px]"
+         x-transition:enter-end="opacity-100 scale-100 translate-y-0 blur-0"
+         x-transition:leave="transition-all transform duration-400 ease-in"
+         x-transition:leave-start="opacity-100 scale-100 translate-y-0 blur-0"
+         x-transition:leave-end="opacity-0 scale-95 translate-y-5 blur-[2px]"
+         class="absolute inset-0 flex items-center justify-center z-50">
 
-            <!-- 🧩 Lebih lebar dan proporsional -->
-            <div class="bg-white/95 rounded-3xl p-10 px-12 shadow-2xl w-full max-w-2xl transform transition-all animate-[float_3s_ease-in-out_infinite]">
-                <h3 class="text-2xl font-semibold mb-4 text-gray-800">Tentang Sistem</h3>
-                <p class="text-gray-600 mb-4">AQUA (Automatic Quality Utility for Agriculture)</p>
+        <div class="bg-white/95 rounded-3xl p-8 shadow-2xl w-full max-w-md transform transition-all animate-[float_3s_ease-in-out_infinite]">
+            <h3 class="text-2xl font-semibold mb-6 text-gray-800">Tema Tampilan</h3>
 
-                <ul class="text-left text-gray-700 list-disc list-inside mb-6 leading-relaxed">
-                    <li><span class="font-semibold">Versi Sistem:</span> 1.0</li>
-                    <li><span class="font-semibold">Pengembang:</span> Universitas Pendidikan Indonesia dan SMKN 6 Bandung</li>
-                </ul>
-
-                <button @click="systemOpen = false"
-                        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition shadow-md hover:shadow-lg">
-                    Tutup
+            <div class="flex justify-center gap-6 mb-8">
+                <button 
+                    @click="document.documentElement.classList.remove('dark'); themeOpen = false"
+                    class="px-5 py-2 rounded-xl bg-gray-200 hover:bg-gray-300 text-gray-800 transition">
+                    🌞 Mode Terang
+                </button>
+                <button 
+                    @click="document.documentElement.classList.add('dark'); themeOpen = false"
+                    class="px-5 py-2 rounded-xl bg-gray-900 text-white hover:bg-gray-800 transition">
+                    🌙 Mode Gelap
                 </button>
             </div>
-        </div>
 
+            <button @click="themeOpen = false"
+                    class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg transition shadow-md hover:shadow-lg">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <!-- Card Tentang Sistem -->
+    <div x-cloak 
+        x-show="systemOpen"
+        x-transition:enter="transition-all transform duration-500 ease-out delay-[20ms]"
+        x-transition:enter-start="opacity-0 scale-95 translate-y-5 blur-[2px]"
+        x-transition:enter-end="opacity-100 scale-100 translate-y-0 blur-0"
+        x-transition:leave="transition-all transform duration-400 ease-in"
+        x-transition:leave-start="opacity-100 scale-100 translate-y-0 blur-0"
+        x-transition:leave-end="opacity-0 scale-95 translate-y-5 blur-[2px]"
+        class="absolute inset-0 flex items-center justify-center z-50">
+
+        <div class="bg-white/95 rounded-3xl p-10 px-12 shadow-2xl w-full max-w-2xl transform transition-all animate-[float_3s_ease-in-out_infinite]">
+            <h3 class="text-2xl font-semibold mb-4 text-gray-800">Tentang Sistem</h3>
+            <p class="text-gray-600 mb-4">AQUA (Automatic Quality Utility for Agriculture)</p>
+
+            <ul class="text-left text-gray-700 list-disc list-inside mb-6 leading-relaxed">
+                <li><span class="font-semibold">Versi Sistem:</span> 1.0</li>
+                <li><span class="font-semibold">Pengembang:</span> Universitas Pendidikan Indonesia dan SMKN 6 Bandung</li>
+            </ul>
+
+            <button @click="systemOpen = false"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition shadow-md hover:shadow-lg">
+                Tutup
+            </button>
+        </div>
+    </div>
 </div>
 
 <!-- Alpine.js -->
@@ -191,7 +217,7 @@
 <style>
 [x-cloak] { display: none !important; }
 
-[x-show="open"], [x-show="systemOpen"] > div {
+[x-show="open"], [x-show="systemOpen"], [x-show="themeOpen"] > div {
   will-change: transform, opacity;
   backface-visibility: hidden;
   transform: translateZ(0);
