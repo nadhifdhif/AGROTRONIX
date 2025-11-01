@@ -25,8 +25,8 @@
 
         /* Sidebar */
         aside {
-            background-color: rgba(31, 41, 55, 0.95);
-            backdrop-filter: blur(6px);
+            background-color: rgba(118, 147, 190, 0.95);
+            backdrop-filter: blur(2px);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -34,7 +34,7 @@
 
         /* Bagian bawah sidebar (user info) */
         .user-section {
-            background-color: #2563eb; /* biru */
+            background-color: #839dd4ff; /* biru */
             text-align: center;
             padding: 1rem;
             font-weight: 500;
